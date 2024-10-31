@@ -52,7 +52,7 @@ class UserLogin(Resource):
         return {'message': 'Invalid Credentials'}, 401
     
     
-class ProtectedResource(Resource):
+class SecureResource(Resource):
     @jwt_required()
     def get(self):
         current_user_id = get_jwt_identity()
@@ -64,7 +64,7 @@ class ProtectedResource(Resource):
 # Add resources to the API
 api.add_resource(UserRegistration, '/register')
 api.add_resource(UserLogin, '/login')
-api.add_resource(ProtectedResource,'/secure')
+api.add_resource(SecureResource,'/secure')
 
 # Run the app
 if __name__ == '__main__':
